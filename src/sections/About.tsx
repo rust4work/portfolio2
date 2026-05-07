@@ -4,12 +4,14 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SectionHeader from "@/components/SectionHeader";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const stats = statsRef.current;
@@ -64,6 +66,13 @@ export default function About() {
     return () => ctx.revert();
   }, []);
 
+  const stats = [
+    { value: 50, label: t("about.stats.projects"), suffix: "+" },
+    { value: 5, label: t("about.stats.experience"), suffix: "+" },
+    { value: 30, label: t("about.stats.clients"), suffix: "+" },
+    { value: 12, label: t("about.stats.awards"), suffix: "" },
+  ];
+
   return (
     <section
       ref={sectionRef}
@@ -73,12 +82,11 @@ export default function About() {
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeader
           number="01"
-          title="About Me"
-          subtitle="Passionate about creating digital experiences that leave lasting impressions"
+          title={t("about.title")}
+          subtitle={t("about.subtitle")}
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-          {/* Left: Image */}
           <div className="relative">
             <div className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-fg-muted/10">
               <div className="absolute inset-0 flex items-center justify-center">
@@ -96,42 +104,24 @@ export default function About() {
             </div>
           </div>
 
-          {/* Right: Content */}
           <div className="space-y-8">
             <p className="text-xl md:text-2xl leading-relaxed text-fg">
-              I&apos;m a creative developer with a passion for building
-              immersive web experiences that bridge the gap between design and
-              technology. With over 5 years of experience in the industry,
-              I&apos;ve had the privilege of working with startups and Fortune
-              500 companies alike.
+              {t("about.p1")}
             </p>
 
             <p className="text-lg leading-relaxed text-fg-muted">
-              My approach combines technical expertise with an eye for
-              aesthetics. I believe that great software should not only function
-              flawlessly but also feel intuitive and delightful to use. Every
-              pixel matters, every interaction counts.
+              {t("about.p2")}
             </p>
 
             <p className="text-lg leading-relaxed text-fg-muted">
-              When I&apos;m not coding, you&apos;ll find me exploring new design
-              trends, contributing to open-source projects, or capturing moments
-              through photography. I&apos;m always eager to take on new
-              challenges and push the boundaries of what&apos;s possible on the
-              web.
+              {t("about.p3")}
             </p>
 
-            {/* Stats */}
             <div
               ref={statsRef}
-              className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-8 border-t border-fg/10"
+              className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-8 border-t border-border"
             >
-              {[
-                { value: 50, label: "Projects", suffix: "+" },
-                { value: 5, label: "Years Exp", suffix: "+" },
-                { value: 30, label: "Clients", suffix: "+" },
-                { value: 12, label: "Awards", suffix: "" },
-              ].map((stat) => (
+              {stats.map((stat) => (
                 <div key={stat.label} className="stat-item">
                   <p
                     className="stat-number font-display text-4xl md:text-5xl font-bold text-accent"

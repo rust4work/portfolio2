@@ -5,12 +5,14 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Mail, ArrowUpRight, Cat, Bird } from "lucide-react";
 import MagneticButton from "@/components/MagneticButton";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
+  const { t, lang } = useLanguage();
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -18,7 +20,6 @@ export default function Contact() {
     if (!section || !cta) return;
 
     const ctx = gsap.context(() => {
-      // Scale up the CTA text on scroll
       gsap.fromTo(
         cta.querySelector(".cta-text"),
         { scale: 0.8, opacity: 0 },
@@ -35,7 +36,6 @@ export default function Contact() {
         },
       );
 
-      // Footer reveal effect
       const footer = section.querySelector(".footer-content");
       if (footer) {
         gsap.fromTo(
@@ -59,6 +59,13 @@ export default function Contact() {
     return () => ctx.revert();
   }, []);
 
+  const navLinks = [
+    { label: t("nav.about"), href: "#about" },
+    { label: t("nav.stack"), href: "#stack" },
+    { label: t("nav.work"), href: "#projects" },
+    { label: t("nav.awards"), href: "#awards" },
+  ];
+
   return (
     <section
       ref={sectionRef}
@@ -66,18 +73,17 @@ export default function Contact() {
       className="relative py-32 md:py-40 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-6">
-        {/* CTA Section */}
         <div ref={ctaRef} className="text-center mb-32">
           <p className="font-mono text-sm uppercase tracking-widest text-accent mb-8">
-            Let&apos;s Connect
+            {t("contact.subtitle")}
           </p>
 
           <h2 className="cta-text font-display text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.9] mb-12">
-            Let&apos;s Build
+            {t("contact.title1")}
             <br />
-            <span className="text-fg-muted">Something</span>
+            <span className="text-fg-muted">{t("contact.title2")}</span>
             <br />
-            Together
+            {t("contact.title3")}
           </h2>
 
           <MagneticButton
@@ -86,37 +92,33 @@ export default function Contact() {
             strength={0.2}
           >
             <Mail className="w-5 h-5" />
-            <span>Get in Touch</span>
+            <span>{t("contact.cta")}</span>
             <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
           </MagneticButton>
         </div>
 
-        {/* Footer */}
-        <div className="footer-content border-t border-fg/10 pt-12">
+        <div className="footer-content border-t border-border pt-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
-            {/* Brand */}
             <div>
               <p className="font-display text-2xl font-bold mb-4">John Doe</p>
               <p className="text-fg-muted leading-relaxed">
-                Creative Developer crafting premium digital experiences with
-                modern technologies.
+                {t("contact.brand")}
               </p>
             </div>
 
-            {/* Links */}
             <div className="grid grid-cols-2 gap-8">
               <div>
                 <p className="font-mono text-xs uppercase tracking-widest text-fg-muted mb-4">
-                  Navigation
+                  {t("contact.nav.title")}
                 </p>
                 <ul className="space-y-3">
-                  {["About", "Stack", "Work", "Awards"].map((link) => (
-                    <li key={link}>
+                  {navLinks.map((link) => (
+                    <li key={link.href}>
                       <a
-                        href={`#${link.toLowerCase()}`}
+                        href={link.href}
                         className="text-fg-muted hover:text-fg transition-colors"
                       >
-                        {link}
+                        {link.label}
                       </a>
                     </li>
                   ))}
@@ -124,20 +126,19 @@ export default function Contact() {
               </div>
               <div>
                 <p className="font-mono text-xs uppercase tracking-widest text-fg-muted mb-4">
-                  Social
+                  {t("contact.social.title")}
                 </p>
                 <ul className="space-y-3">
                   <li>
                     <a
-                      href="https://github.com"
+                      href="https://linkedin.com"
                       target="_blank"
                       className="flex items-center gap-2 text-fg-muted hover:text-fg transition-colors"
                     >
                       <Cat className="w-4 h-4" />
-                      GitHub
+                      LinkedIn
                     </a>
                   </li>
-
                   <li>
                     <a
                       href="https://twitter.com"
@@ -152,7 +153,6 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Back to top */}
             <div className="flex md:justify-end">
               <button
                 onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
@@ -162,19 +162,18 @@ export default function Contact() {
                   <ArrowUpRight className="w-5 h-5 -rotate-45 group-hover:text-bg transition-colors" />
                 </div>
                 <span className="font-mono text-xs uppercase tracking-widest text-fg-muted">
-                  Back to Top
+                  {t("contact.backtotop")}
                 </span>
               </button>
             </div>
           </div>
 
-          {/* Copyright */}
-          <div className="mt-16 pt-8 border-t border-fg/5 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="mt-16 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="font-mono text-xs text-fg-muted">
-              © 2024 John Doe. All rights reserved.
+              © 2024 John Doe. {t("contact.copyright")}
             </p>
             <p className="font-mono text-xs text-fg-muted">
-              Built with Next.js, GSAP & lots of ☕
+              {t("contact.builtwith")}
             </p>
           </div>
         </div>

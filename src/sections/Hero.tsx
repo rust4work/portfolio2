@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowDown } from "lucide-react";
-import ParallaxLayer from "@/components/ParallaxLayer";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,6 +12,7 @@ export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -20,7 +21,6 @@ export default function Hero() {
     if (!section || !text || !image) return;
 
     const ctx = gsap.context(() => {
-      // Entrance animation
       const tl = gsap.timeline({ delay: 0.3 });
 
       tl.fromTo(
@@ -48,7 +48,6 @@ export default function Hero() {
           "-=1",
         );
 
-      // Scroll-driven parallax for text
       gsap.to(text, {
         y: -150,
         ease: "none",
@@ -60,7 +59,6 @@ export default function Hero() {
         },
       });
 
-      // Image parallax (slower)
       gsap.to(image, {
         y: 50,
         ease: "none",
@@ -81,26 +79,18 @@ export default function Hero() {
       ref={sectionRef}
       className="relative min-h-screen flex items-center overflow-hidden pt-20"
     >
-      {/* Background decorative elements */}
-      <ParallaxLayer
-        speed={0.3}
-        className="absolute top-20 right-10 opacity-10"
-      >
+      <div className="absolute top-20 right-10 opacity-10">
         <div className="w-64 h-64 rounded-full bg-accent blur-3xl" />
-      </ParallaxLayer>
-      <ParallaxLayer
-        speed={-0.2}
-        className="absolute bottom-20 left-10 opacity-10"
-      >
+      </div>
+      <div className="absolute bottom-20 left-10 opacity-10">
         <div className="w-96 h-96 rounded-full bg-accent-light blur-3xl" />
-      </ParallaxLayer>
+      </div>
 
       <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-        {/* Text Content */}
         <div ref={textRef} className="relative z-10">
           <div className="overflow-hidden mb-2">
             <p className="hero-line font-mono text-sm uppercase tracking-widest text-accent">
-              Creative Developer
+              {t("hero.subtitle")}
             </p>
           </div>
 
@@ -117,8 +107,7 @@ export default function Hero() {
 
           <div className="hero-desc mt-8 max-w-md">
             <p className="text-lg md:text-xl text-fg-muted leading-relaxed">
-              Crafting premium digital experiences with cutting-edge technology
-              and obsessive attention to detail. Based in San Francisco.
+              {t("hero.desc")}
             </p>
           </div>
 
@@ -128,7 +117,7 @@ export default function Hero() {
               className="group relative inline-flex items-center gap-3 px-8 py-4 bg-fg text-bg font-mono text-sm uppercase tracking-wider rounded-full overflow-hidden transition-all hover:pr-12"
               data-cursor-text="View"
             >
-              <span className="relative z-10">View Work</span>
+              <span className="relative z-10">{t("hero.cta.work")}</span>
               <ArrowDown className="relative z-10 w-4 h-4 transition-transform group-hover:translate-y-1" />
               <div className="absolute inset-0 bg-accent transform translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
             </a>
@@ -136,16 +125,14 @@ export default function Hero() {
               href="#contact"
               className="font-mono text-sm uppercase tracking-wider text-fg-muted hover:text-fg transition-colors underline underline-offset-4"
             >
-              Get in Touch
+              {t("hero.cta.contact")}
             </a>
           </div>
         </div>
 
-        {/* Image */}
         <div ref={imageRef} className="relative lg:h-[600px] h-[400px]">
           <div className="absolute inset-0 rounded-3xl overflow-hidden">
             <div className="w-full h-full bg-gradient-to-br from-fg-muted/20 to-fg-muted/5 flex items-center justify-center">
-              {/* Replace with your actual image */}
               <div className="text-center">
                 <div className="w-48 h-48 mx-auto mb-4 rounded-full bg-fg-muted/20 flex items-center justify-center">
                   <span className="font-display text-6xl text-fg-muted/40">
@@ -159,17 +146,15 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Floating card */}
-          <div className="absolute -bottom-6 -left-6 bg-bg border border-fg/10 rounded-2xl p-6 shadow-xl">
+          <div className="absolute -bottom-6 -left-6 bg-bg-secondary border border-border rounded-2xl p-6 shadow-xl">
             <p className="font-mono text-xs text-fg-muted uppercase tracking-wider mb-1">
-              Experience
+              {t("hero.experience")}
             </p>
-            <p className="font-display text-3xl font-bold">5+ Years</p>
+            <p className="font-display text-3xl font-bold">{t("hero.years")}</p>
           </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
         <span className="font-mono text-xs uppercase tracking-widest text-fg-muted">
           Scroll

@@ -4,13 +4,14 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SectionHeader from "@/components/SectionHeader";
-import ScrollReveal from "@/components/ScrollReveal";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const techCategories = [
   {
     name: "Frontend",
+    nameKo: "프론트엔드",
     items: [
       { name: "React", icon: "⚛️" },
       { name: "Next.js", icon: "▲" },
@@ -22,6 +23,7 @@ const techCategories = [
   },
   {
     name: "Backend",
+    nameKo: "백엔드",
     items: [
       { name: "Node.js", icon: "🟢" },
       { name: "PostgreSQL", icon: "🐘" },
@@ -31,6 +33,7 @@ const techCategories = [
   },
   {
     name: "Tools",
+    nameKo: "도구",
     items: [
       { name: "Git", icon: "🔀" },
       { name: "Docker", icon: "🐳" },
@@ -43,6 +46,7 @@ const techCategories = [
 
 export default function TechStack() {
   const sectionRef = useRef<HTMLElement>(null);
+  const { t, lang } = useLanguage();
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -82,39 +86,38 @@ export default function TechStack() {
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeader
           number="02"
-          title="Tech Stack"
-          subtitle="A curated selection of tools and technologies I use to bring ideas to life"
+          title={t("stack.title")}
+          subtitle={t("stack.subtitle")}
         />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {techCategories.map((category, catIndex) => (
-            <ScrollReveal key={category.name} delay={catIndex * 0.1}>
-              <div className="tech-card group relative bg-fg/[0.02] border border-fg/5 rounded-3xl p-8 hover:border-accent/20 transition-all duration-500">
-                <h3 className="font-mono text-sm uppercase tracking-widest text-fg-muted mb-8">
-                  {category.name}
-                </h3>
+            <div
+              key={category.name}
+              className="tech-card group relative bg-fg/[0.02] border border-border rounded-3xl p-8 hover:border-accent/20 transition-all duration-500"
+            >
+              <h3 className="font-mono text-sm uppercase tracking-widest text-fg-muted mb-8">
+                {lang === "ko" ? category.nameKo : category.name}
+              </h3>
 
-                <div className="space-y-4">
-                  {category.items.map((tech, index) => (
-                    <div
-                      key={tech.name}
-                      className="flex items-center gap-4 p-4 rounded-xl bg-bg/50 hover:bg-accent/5 transition-colors duration-300 group/item"
-                      style={{ animationDelay: `${index * 50}ms` }}
-                    >
-                      <span className="text-2xl w-10 h-10 flex items-center justify-center bg-fg/5 rounded-lg">
-                        {tech.icon}
-                      </span>
-                      <span className="font-display text-lg font-medium group-hover/item:text-accent transition-colors">
-                        {tech.name}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Decorative corner */}
-                <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-accent/20 group-hover:bg-accent transition-colors duration-500" />
+              <div className="space-y-4">
+                {category.items.map((tech, index) => (
+                  <div
+                    key={tech.name}
+                    className="flex items-center gap-4 p-4 rounded-xl bg-bg-secondary hover:bg-accent/5 transition-colors duration-300 group/item"
+                  >
+                    <span className="text-2xl w-10 h-10 flex items-center justify-center bg-fg/5 rounded-lg">
+                      {tech.icon}
+                    </span>
+                    <span className="font-display text-lg font-medium group-hover/item:text-accent transition-colors">
+                      {tech.name}
+                    </span>
+                  </div>
+                ))}
               </div>
-            </ScrollReveal>
+
+              <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-accent/20 group-hover:bg-accent transition-colors duration-500" />
+            </div>
           ))}
         </div>
       </div>

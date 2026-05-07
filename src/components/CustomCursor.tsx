@@ -14,7 +14,6 @@ export default function CustomCursor() {
     const dot = cursorDotRef.current;
     if (!cursor || !dot) return;
 
-    // Check for touch device
     const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
     if (isTouchDevice) {
       cursor.style.display = "none";
@@ -52,44 +51,37 @@ export default function CustomCursor() {
 
     window.addEventListener("mousemove", onMouseMove);
 
-    const interactiveElements = document.querySelectorAll(
-      'a, button, [data-cursor="pointer"], [data-cursor-text]',
-    );
-    interactiveElements.forEach((el) => {
-      el.addEventListener("mouseenter", onMouseEnterLink);
-      el.addEventListener("mouseleave", onMouseLeaveLink);
-    });
-
-    return () => {
-      window.removeEventListener("mousemove", onMouseMove);
-      interactiveElements.forEach((el) => {
-        el.removeEventListener("mouseenter", onMouseEnterLink);
-        el.removeEventListener("mouseleave", onMouseLeaveLink);
-      });
-    };
-  }, []);
-
-  // Re-attach listeners when DOM changes
-  useEffect(() => {
-    const observer = new MutationObserver(() => {
+    const attachListeners = () => {
       const interactiveElements = document.querySelectorAll(
         'a, button, [data-cursor="pointer"], [data-cursor-text]',
       );
       interactiveElements.forEach((el) => {
-        el.addEventListener("mouseenter", () => {
-          setIsHovering(true);
-          const text = (el as HTMLElement).dataset.cursorText;
-          if (text) setCursorText(text);
-        });
-        el.addEventListener("mouseleave", () => {
-          setIsHovering(false);
-          setCursorText("");
-        });
+        el.addEventListener("mouseenter", onMouseEnterLink);
+        el.addEventListener("mouseleave", onMouseLeaveLink);
       });
+      return interactiveElements;
+    };
+
+    let elements = attachListeners();
+
+    const observer = new MutationObserver(() => {
+      elements.forEach((el) => {
+        el.removeEventListener("mouseenter", onMouseEnterLink);
+        el.removeEventListener("mouseleave", onMouseLeaveLink);
+      });
+      elements = attachListeners();
     });
 
     observer.observe(document.body, { childList: true, subtree: true });
-    return () => observer.disconnect();
+
+    return () => {
+      window.removeEventListener("mousemove", onMouseMove);
+      elements.forEach((el) => {
+        el.removeEventListener("mouseenter", onMouseEnterLink);
+        el.removeEventListener("mouseleave", onMouseLeaveLink);
+      });
+      observer.disconnect();
+    };
   }, []);
 
   return (

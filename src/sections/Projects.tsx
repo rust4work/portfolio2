@@ -3,9 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Cat, ExternalLink, ArrowUpRight } from "lucide-react";
+import { Cat, ArrowUpRight } from "lucide-react";
 import SectionHeader from "@/components/SectionHeader";
 import MagneticButton from "@/components/MagneticButton";
+import { useLanguage } from "@/context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,8 +14,11 @@ const projects = [
   {
     id: 1,
     title: "E-Commerce Platform",
+    titleKo: "이커머스 플랫폼",
     description:
       "A full-stack e-commerce solution with real-time inventory, AI-powered recommendations, and seamless checkout experience. Built for scale.",
+    descriptionKo:
+      "실시간 재고 관리, AI 기반 추천 시스템, 원활한 결제 경험을 갖춘 풀스택 이커머스 솔루션입니다. 확장성을 염두에 두고 구축되었습니다.",
     image: "/images/project1.jpg",
     tags: ["Next.js", "TypeScript", "PostgreSQL", "Stripe"],
     githubUrl: "https://github.com",
@@ -23,8 +27,11 @@ const projects = [
   {
     id: 2,
     title: "AI Dashboard",
+    titleKo: "AI 대시보드",
     description:
       "Real-time analytics dashboard with machine learning insights. Features interactive data visualization and predictive modeling.",
+    descriptionKo:
+      "머신러닝 인사이트가 포함된 실시간 분석 대시보드입니다. 인터랙티브 데이터 시각화와 예측 모델링 기능을 제공합니다.",
     image: "/images/project2.jpg",
     tags: ["React", "Python", "TensorFlow", "D3.js"],
     githubUrl: "https://github.com",
@@ -33,8 +40,11 @@ const projects = [
   {
     id: 3,
     title: "Social Media App",
+    titleKo: "소셜 미디어 앱",
     description:
       "Mobile-first social platform with real-time messaging, stories, and content discovery. Optimized for performance and engagement.",
+    descriptionKo:
+      "실시간 메시징, 스토리, 콘텐츠 발견 기능을 갖춘 모바일 우선 소셜 플랫폼입니다. 성능과 참여도에 최적화되었습니다.",
     image: "/images/project3.jpg",
     tags: ["React Native", "Firebase", "Redux", "Node.js"],
     githubUrl: "https://github.com",
@@ -43,8 +53,11 @@ const projects = [
   {
     id: 4,
     title: "Design System",
+    titleKo: "디자인 시스템",
     description:
       "Comprehensive component library with accessibility-first approach. Used across 12 products by a team of 40+ developers.",
+    descriptionKo:
+      "접근성 우선 접근 방식의 종합적인 컴포넌트 라이브러리입니다. 40명 이상의 개발자 팀이 12개 제품에서 사용하고 있습니다.",
     image: "/images/project4.jpg",
     tags: ["TypeScript", "Storybook", "Tailwind", "CI/CD"],
     githubUrl: "https://github.com",
@@ -55,6 +68,7 @@ const projects = [
 export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
+  const { t, lang } = useLanguage();
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -85,7 +99,6 @@ export default function Projects() {
           },
         );
 
-        // Parallax for image
         const image = card.querySelector(".project-image");
         if (image) {
           gsap.to(image, {
@@ -114,8 +127,8 @@ export default function Projects() {
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeader
           number="03"
-          title="Selected Work"
-          subtitle="A collection of projects that showcase my expertise in building scalable, user-centric applications"
+          title={t("projects.title")}
+          subtitle={t("projects.subtitle")}
         />
 
         <div className="space-y-24 md:space-y-32">
@@ -128,7 +141,6 @@ export default function Projects() {
               onMouseEnter={() => setHoveredProject(project.id)}
               onMouseLeave={() => setHoveredProject(null)}
             >
-              {/* Image */}
               <div
                 className={`relative aspect-[16/10] rounded-2xl overflow-hidden ${
                   index % 2 === 1 ? "lg:order-2" : ""
@@ -147,7 +159,6 @@ export default function Projects() {
                   </div>
                 </div>
 
-                {/* Overlay on hover */}
                 <div
                   className={`absolute inset-0 bg-accent/10 transition-opacity duration-500 ${
                     hoveredProject === project.id ? "opacity-100" : "opacity-0"
@@ -155,7 +166,6 @@ export default function Projects() {
                 />
               </div>
 
-              {/* Content */}
               <div className={index % 2 === 1 ? "lg:order-1" : ""}>
                 <div className="flex flex-wrap gap-2 mb-6">
                   {project.tags.map((tag) => (
@@ -169,11 +179,11 @@ export default function Projects() {
                 </div>
 
                 <h3 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-6 group-hover:text-accent transition-colors duration-300">
-                  {project.title}
+                  {lang === "ko" ? project.titleKo : project.title}
                 </h3>
 
                 <p className="text-lg text-fg-muted leading-relaxed mb-8">
-                  {project.description}
+                  {lang === "ko" ? project.descriptionKo : project.description}
                 </p>
 
                 <div className="flex items-center gap-4">
@@ -182,14 +192,14 @@ export default function Projects() {
                     className="group/btn px-6 py-3 border border-fg/20 rounded-full font-mono text-sm uppercase tracking-wider hover:bg-fg hover:text-bg transition-all duration-300"
                   >
                     <Cat className="w-4 h-4 mr-2" />
-                    Code
+                    {t("projects.cta.code")}
                   </MagneticButton>
 
                   <MagneticButton
                     href={project.demoUrl}
                     className="group/btn px-6 py-3 bg-fg text-bg rounded-full font-mono text-sm uppercase tracking-wider hover:bg-accent transition-all duration-300"
                   >
-                    <span>Live Demo</span>
+                    <span>{t("projects.cta.demo")}</span>
                     <ArrowUpRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
                   </MagneticButton>
                 </div>

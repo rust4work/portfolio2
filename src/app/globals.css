@@ -4,12 +4,15 @@
   --font-display: "Inter", system-ui, sans-serif;
   --font-body: "Inter", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", monospace;
+
+  /* Light mode colors */
   --color-bg: #f5f3ef;
-  --color-bg-dark: #121212;
+  --color-bg-secondary: #ffffff;
   --color-fg: #1a1a1a;
   --color-fg-muted: #6b6b6b;
   --color-accent: #c45c3e;
   --color-accent-light: #e8a88c;
+  --color-border: rgba(26, 26, 26, 0.1);
 }
 
 @layer base {
@@ -24,12 +27,26 @@
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition:
+      background-color 0.5s ease,
+      color 0.5s ease;
   }
 
   ::selection {
     background-color: var(--color-accent);
     color: white;
   }
+}
+
+/* Dark mode */
+.dark {
+  --color-bg: #121212;
+  --color-bg-secondary: #1a1a1a;
+  --color-fg: #f5f3ef;
+  --color-fg-muted: #a0a0a0;
+  --color-accent: #e8a88c;
+  --color-accent-light: #c45c3e;
+  --color-border: rgba(245, 243, 239, 0.1);
 }
 
 /* Lenis smooth scroll */
