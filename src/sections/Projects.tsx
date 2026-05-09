@@ -7,61 +7,67 @@ import { Cat, ArrowUpRight } from "lucide-react";
 import SectionHeader from "@/components/SectionHeader";
 import MagneticButton from "@/components/MagneticButton";
 import { useLanguage } from "@/context/LanguageContext";
+import dacooka from "../../public/projects/dacooka.png";
+import utown from "../../public/projects/utown.png";
+import movie from "../../public/projects/movie.png";
+import blog from "../../public/projects/blog.png";
+import NextImage from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
     id: 1,
-    title: "E-Commerce Platform",
-    titleKo: "이커머스 플랫폼",
+    title: "Smart Recipe Companion",
+    titleKo: "스마트 레시피 컴패니언",
     description:
-      "A full-stack e-commerce solution with real-time inventory, AI-powered recommendations, and seamless checkout experience. Built for scale.",
+      "DaCooka is a modern, AI-powered culinary assistant designed to solve the 'what is for dinner?' dilemma. By leveraging the Spoonacular API, it helps users find recipes based on what they already have in their pantry or strictly fit their nutritional goals.",
     descriptionKo:
-      "실시간 재고 관리, AI 기반 추천 시스템, 원활한 결제 경험을 갖춘 풀스택 이커머스 솔루션입니다. 확장성을 염두에 두고 구축되었습니다.",
-    image: "/images/project1.jpg",
-    tags: ["Next.js", "TypeScript", "PostgreSQL", "Stripe"],
-    githubUrl: "https://github.com",
-    demoUrl: "https://demo.com",
+      "DaCooka는 '오늘 저녁은 뭐 먹지?'라는 고민을 해결하기 위해 설계된 최첨단 AI 기반 요리 도우미입니다. Spoonacular API를 활용하여 사용자가 이미 가지고 있는 재료를 기반으로 하거나 영양 목표에 정확히 부합하는 레시피를 찾아줍니다..",
+    image: dacooka,
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Spoonacular API"],
+    githubUrl: "https://github.com/rust4work/dacooka",
+    demoUrl: "https://dacooka.vercel.app/",
   },
   {
     id: 2,
-    title: "AI Dashboard",
-    titleKo: "AI 대시보드",
+    title: "Modern Food Delivery & Service Marketplace",
+    titleKo: "현대적인 음식 배달 및 서비스 마켓플레이스",
     description:
-      "Real-time analytics dashboard with machine learning insights. Features interactive data visualization and predictive modeling.",
+      "UTown is a comprehensive frontend application designed to handle complex user flows for three distinct roles Clients (Customers), Restaurateurs (Vendors) Admins",
     descriptionKo:
-      "머신러닝 인사이트가 포함된 실시간 분석 대시보드입니다. 인터랙티브 데이터 시각화와 예측 모델링 기능을 제공합니다.",
-    image: "/images/project2.jpg",
-    tags: ["React", "Python", "TensorFlow", "D3.js"],
-    githubUrl: "https://github.com",
-    demoUrl: "https://demo.com",
+      "UTown은 고객, 레스토랑 운영자, 관리자라는 세 가지 역할에 대한 복잡한 사용자 흐름을 처리하도록 설계된 종합적인 프런트엔드 애플리케이션입니다.",
+    image: utown,
+    tags: ["React", "TypeScript", "Vite", "SASS", "AntDesign"],
+    githubUrl: "https://github.com/rust4work/utown",
+    demoUrl: "/",
+    comingSoon: true,
   },
   {
     id: 3,
-    title: "Social Media App",
-    titleKo: "소셜 미디어 앱",
+    title: "Movie Discovery App",
+    titleKo: "영화 발견 앱",
     description:
-      "Mobile-first social platform with real-time messaging, stories, and content discovery. Optimized for performance and engagement.",
+      "A high-performance movie search application that interfaces with the TMDB API to provide real-time movie searching, rating functionality, and top-rated lists, all wrapped in a responsive, polished UI.",
     descriptionKo:
-      "실시간 메시징, 스토리, 콘텐츠 발견 기능을 갖춘 모바일 우선 소셜 플랫폼입니다. 성능과 참여도에 최적화되었습니다.",
-    image: "/images/project3.jpg",
-    tags: ["React Native", "Firebase", "Redux", "Node.js"],
-    githubUrl: "https://github.com",
-    demoUrl: "https://demo.com",
+      "고성능 영화 검색 애플리케이션으로, TMDB API와 연동하여 실시간 영화 검색, 평점 기능, 최고 평점 목록 등을 제공하며, 반응형의 세련된 사용자 인터페이스를 갖추고 있습니다.",
+    image: movie,
+    tags: ["React", "TypeScript", "Tailwind CSS", "Vercel"],
+    githubUrl: "https://github.com/rust4work/movie-app",
+    demoUrl: "https://movie-app-one-mu-47.vercel.app/",
   },
   {
     id: 4,
-    title: "Design System",
-    titleKo: "디자인 시스템",
+    title: "React Blog Platform",
+    titleKo: "리액트 블로그 플랫폼",
     description:
-      "Comprehensive component library with accessibility-first approach. Used across 12 products by a team of 40+ developers.",
+      "A modern, full-featured blog application capable of handling user authentication, article management (CRUD), and dynamic feed pagination. Built to demonstrate proficiency in core React concepts and component-based architecture.",
     descriptionKo:
-      "접근성 우선 접근 방식의 종합적인 컴포넌트 라이브러리입니다. 40명 이상의 개발자 팀이 12개 제품에서 사용하고 있습니다.",
-    image: "/images/project4.jpg",
-    tags: ["TypeScript", "Storybook", "Tailwind", "CI/CD"],
-    githubUrl: "https://github.com",
-    demoUrl: "https://demo.com",
+      "사용자 인증, 게시글 관리(CRUD), 동적 피드 페이지네이션 기능을 갖춘 최신형 블로그 애플리케이션입니다. 핵심 React 개념과 컴포넌트 기반 아키텍처에 대한 숙련도를 보여주기 위해 개발되었습니다.",
+    image: blog,
+    tags: ["TypeScript", "Vite", "SCSS", "ESlint"],
+    githubUrl: "https://github.com/rust4work/blog-platform",
+    demoUrl: "https://blog-platform-five-red.vercel.app/",
   },
 ];
 
@@ -146,17 +152,16 @@ export default function Projects() {
                   index % 2 === 1 ? "lg:order-2" : ""
                 }`}
               >
-                <div className="project-image absolute inset-0 bg-gradient-to-br from-fg-muted/20 to-fg-muted/5 flex items-center justify-center transition-transform duration-700 group-hover:scale-105">
-                  <div className="text-center">
-                    <div className="w-24 h-24 mx-auto mb-4 rounded-2xl bg-fg-muted/20 flex items-center justify-center">
-                      <span className="font-display text-3xl text-fg-muted/40">
-                        {project.id}
-                      </span>
-                    </div>
-                    <p className="font-mono text-sm text-fg-muted">
-                      Project Image {project.id}
-                    </p>
-                  </div>
+                <div className="project-image absolute inset-0 transition-transform duration-700 group-hover:scale-105">
+                  <NextImage
+                    src={project.image}
+                    alt={lang === "ko" ? project.titleKo : project.title}
+                    fill
+                    className="object-cover"
+                    sizes="100vw"
+                    quality={90}
+                    priority={index < 2}
+                  />
                 </div>
 
                 <div
@@ -197,6 +202,7 @@ export default function Projects() {
 
                   <MagneticButton
                     href={project.demoUrl}
+                    disabled={project.comingSoon}
                     className="group/btn px-6 py-3 bg-fg text-bg rounded-full font-mono text-sm uppercase tracking-wider hover:bg-accent transition-all duration-300"
                   >
                     <span>{t("projects.cta.demo")}</span>

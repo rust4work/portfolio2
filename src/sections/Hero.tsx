@@ -96,12 +96,12 @@ export default function Hero() {
 
           <div className="overflow-hidden">
             <h1 className="hero-line font-display text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tighter leading-[0.85]">
-              John
+              Rustam
             </h1>
           </div>
           <div className="overflow-hidden">
             <h1 className="hero-line font-display text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tighter leading-[0.85] text-fg-muted">
-              Doe
+              Bakhtiyorov
             </h1>
           </div>
 

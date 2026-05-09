@@ -67,10 +67,10 @@ export default function About() {
   }, []);
 
   const stats = [
-    { value: 50, label: t("about.stats.projects"), suffix: "+" },
-    { value: 5, label: t("about.stats.experience"), suffix: "+" },
-    { value: 30, label: t("about.stats.clients"), suffix: "+" },
-    { value: 12, label: t("about.stats.awards"), suffix: "" },
+    { value: 10, label: t("about.stats.projects"), suffix: "+" },
+    { value: 1, label: t("about.stats.experience"), suffix: "+" },
+    { value: 15, label: t("about.stats.clients"), suffix: "+" },
+    { value: 3, label: t("about.stats.awards"), suffix: "" },
   ];
 
   return (

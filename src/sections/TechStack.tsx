@@ -5,6 +5,20 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SectionHeader from "@/components/SectionHeader";
 import { useLanguage } from "@/context/LanguageContext";
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiTailwindcss,
+  SiNodedotjs,
+  SiGit,
+  SiFigma,
+  SiVercel,
+  SiPostman,
+  SiGooglegemini,
+  SiClaude,
+  SiOpenaigym,
+} from "react-icons/si";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,33 +27,32 @@ const techCategories = [
     name: "Frontend",
     nameKo: "프론트엔드",
     items: [
-      { name: "React", icon: "⚛️" },
-      { name: "Next.js", icon: "▲" },
-      { name: "TypeScript", icon: "📘" },
-      { name: "Tailwind CSS", icon: "🎨" },
-      { name: "GSAP", icon: "🎬" },
-      { name: "Three.js", icon: "🔷" },
+      { name: "React", icon: <SiReact /> },
+      { name: "Next.js", icon: <SiNextdotjs /> },
+      { name: "TypeScript", icon: <SiTypescript /> },
+      { name: "Tailwind CSS", icon: <SiTailwindcss /> },
+      { name: "GSAP", icon: <SiFigma /> },
     ],
   },
   {
     name: "Backend",
     nameKo: "백엔드",
     items: [
-      { name: "Node.js", icon: "🟢" },
-      { name: "PostgreSQL", icon: "🐘" },
-      { name: "GraphQL", icon: "◈" },
-      { name: "Redis", icon: "🔴" },
+      { name: "Node.js", icon: <SiNodedotjs /> },
+      { name: "Postman", icon: <SiPostman /> },
     ],
   },
   {
     name: "Tools",
     nameKo: "도구",
     items: [
-      { name: "Git", icon: "🔀" },
-      { name: "Docker", icon: "🐳" },
-      { name: "Figma", icon: "🎯" },
-      { name: "Vercel", icon: "▲" },
-      { name: "AWS", icon: "☁️" },
+      { name: "Git", icon: <SiGit /> },
+      { name: "Figma", icon: <SiFigma /> },
+      { name: "Vercel", icon: <SiVercel /> },
+      { name: "AWS", icon: <SiVercel /> },
+      { name: "Gemini", icon: <SiGooglegemini /> },
+      { name: "Claude", icon: <SiClaude /> },
+      { name: "Codex", icon: <SiOpenaigym /> },
     ],
   },
 ];

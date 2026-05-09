@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, ReactNode, forwardRef } from "react";
+import { useRef, useState, ReactNode } from "react";
 import gsap from "gsap";
 
 interface MagneticButtonProps {
@@ -9,6 +9,7 @@ interface MagneticButtonProps {
   strength?: number;
   onClick?: () => void;
   href?: string;
+  disabled?: boolean;
 }
 
 export default function MagneticButton({
@@ -17,11 +18,13 @@ export default function MagneticButton({
   strength = 0.3,
   onClick,
   href,
+  disabled = false,
 }: MagneticButtonProps) {
   const ref = useRef<HTMLButtonElement | HTMLAnchorElement>(null);
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseMove = (e: React.MouseEvent) => {
+    if (disabled) return;
     const element = ref.current;
     if (!element) return;
 
@@ -54,13 +57,26 @@ export default function MagneticButton({
   };
 
   const commonProps = {
-    className: `relative inline-flex items-center justify-center transition-all duration-300 ${className}`,
+    className: `relative inline-flex items-center justify-center transition-all duration-300 ${
+      disabled ? "opacity-50 cursor-not-allowed pointer-events-none" : ""
+    } ${className}`,
     onMouseMove: handleMouseMove,
-    onMouseEnter: () => setIsHovered(true),
+    onMouseEnter: () => !disabled && setIsHovered(true),
     onMouseLeave: handleMouseLeave,
-    onClick,
     "data-cursor": "pointer" as const,
   };
+
+  if (disabled) {
+    return (
+      <button
+        ref={ref as React.Ref<HTMLButtonElement>}
+        disabled
+        {...commonProps}
+      >
+        {children}
+      </button>
+    );
+  }
 
   if (href) {
     return (
@@ -77,7 +93,11 @@ export default function MagneticButton({
   }
 
   return (
-    <button ref={ref as React.Ref<HTMLButtonElement>} {...commonProps}>
+    <button
+      ref={ref as React.Ref<HTMLButtonElement>}
+      onClick={onClick}
+      {...commonProps}
+    >
       {children}
     </button>
   );
