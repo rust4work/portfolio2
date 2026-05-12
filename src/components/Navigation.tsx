@@ -66,7 +66,7 @@ export default function Navigation() {
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           >
-            JD.
+            RB.
           </a>
 
           <div className="hidden md:flex items-center gap-8">

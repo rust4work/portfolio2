@@ -5,6 +5,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowDown } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import NextImage from "next/image";
+import devpic from "@/../public/devpic.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -95,12 +97,12 @@ export default function Hero() {
           </div>
 
           <div className="overflow-hidden">
-            <h1 className="hero-line font-display text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tighter leading-[0.85]">
+            <h1 className="hero-line font-display text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tighter leading-[0.85]">
               Rustam
             </h1>
           </div>
           <div className="overflow-hidden">
-            <h1 className="hero-line font-display text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tighter leading-[0.85] text-fg-muted">
+            <h1 className="hero-line font-display text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tighter leading-[0.85] text-fg-muted">
               Bakhtiyorov
             </h1>
           </div>
@@ -134,14 +136,13 @@ export default function Hero() {
           <div className="absolute inset-0 rounded-3xl overflow-hidden">
             <div className="w-full h-full bg-gradient-to-br from-fg-muted/20 to-fg-muted/5 flex items-center justify-center">
               <div className="text-center">
-                <div className="w-48 h-48 mx-auto mb-4 rounded-full bg-fg-muted/20 flex items-center justify-center">
-                  <span className="font-display text-6xl text-fg-muted/40">
-                    JD
-                  </span>
+                <div className="w-108 h-108 mx-auto mb-4 rounded-full bg-fg-muted/20 flex items-center justify-center">
+                  <NextImage
+                    src={devpic}
+                    alt="Developer"
+                    className="w-full h-full object-cover rounded-full"
+                  />
                 </div>
-                <p className="font-mono text-sm text-fg-muted">
-                  Your Photo Here
-                </p>
               </div>
             </div>
           </div>

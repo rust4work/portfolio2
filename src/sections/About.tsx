@@ -5,6 +5,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SectionHeader from "@/components/SectionHeader";
 import { useLanguage } from "@/context/LanguageContext";
+import NextImage from "next/image";
+import devpic2 from "@/../public/devpic2.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -90,16 +92,11 @@ export default function About() {
           <div className="relative">
             <div className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-fg-muted/10">
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-32 h-32 mx-auto mb-4 rounded-full bg-fg-muted/20 flex items-center justify-center">
-                    <span className="font-display text-4xl text-fg-muted/40">
-                      📸
-                    </span>
-                  </div>
-                  <p className="font-mono text-sm text-fg-muted">
-                    Your Photo Here
-                  </p>
-                </div>
+                <NextImage
+                  src={devpic2}
+                  alt="Developer"
+                  className="w-full h-full object-cover rounded-3xl"
+                />
               </div>
             </div>
           </div>
@@ -127,7 +124,8 @@ export default function About() {
                     className="stat-number font-display text-4xl md:text-5xl font-bold text-accent"
                     data-value={stat.value}
                   >
-                    0{stat.suffix}
+                    {stat.value}
+                    {stat.suffix}
                   </p>
                   <p className="font-mono text-sm text-fg-muted uppercase tracking-wider mt-2">
                     {stat.label}

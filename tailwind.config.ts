@@ -14,3 +14,5 @@ const config: Config = {
 };
 
 export default config;
+// Ensure aspect-ratio and animation utilities are enabled
+// (They are by default in Tailwind v3+)
