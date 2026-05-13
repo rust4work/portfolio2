@@ -12,45 +12,36 @@ gsap.registerPlugin(ScrollTrigger);
 const awards = [
   {
     id: 1,
-    title: "Site of the Day",
-    titleKo: "오늘의 사이트",
-    organization: "Awwwards",
-    year: "2024",
+    title: "Frontend Developer Certification",
+    titleKo: "프론트엔드 개발자 인증",
+    organization: "SChoice Hapsida Co., Ltd.",
+    year: "2026",
     description:
-      "Recognized for exceptional design and user experience in web development.",
+      "Completed an intensive Frontend Developer program focused on modern web development, responsive UI implementation, and real-world project development using JavaScript and frontend technologies.",
     descriptionKo:
-      "웹 개발에서 뛰어난 디자인과 사용자 경험으로 인정받았습니다.",
+      "프론트엔드 개발자 인증 프로그램을 완료하여 현대적인 웹 개발, 반응형 UI 구현 및 실제 프로젝트 개발 능력을 향상시켰습니다.",
   },
   {
     id: 2,
-    title: "Developer 30 Under 30",
-    titleKo: "30세 이하 개발자 30인",
-    organization: "Forbes",
-    year: "2023",
+    title: "NEORDINARY x Spoon OS Hackathon 3rd Place",
+    titleKo: "NEORDINARY x Spoon OS 해커톤 3위",
+    organization: "NEORDINARY & Spoon OS",
+    year: "2025",
     description:
-      "Featured among the top young developers shaping the future of technology.",
+      "Secured 3rd place out of 10+ teams in a competitive hackathon",
     descriptionKo:
-      "기술의 미래를 형성하는 최고의 젊은 개발자들 중 한 명으로 선정되었습니다.",
+      "경쟁이 치열한 해커톤에서 10개 이상의 팀 중 3위를 차지했습니다.",
   },
   {
     id: 3,
-    title: "Best Innovation",
-    titleKo: "최고의 혁신상",
-    organization: "CSS Design Awards",
-    year: "2024",
+    title: "CS50: Web Programming with Python and JavaScript",
+    titleKo: "CS50: 파이썬과 JavaScript로 배우는 웹 프로그래밍",
+    organization: "Harvard University",
+    year: "2025",
     description:
-      "Awarded for pushing the boundaries of creative web development.",
-    descriptionKo: "창의적인 웹 개발의 한계를 뛰어넘은 공로로 수상했습니다.",
-  },
-  {
-    id: 4,
-    title: "Open Source Champion",
-    titleKo: "오픈소스 챔피언",
-    organization: "GitHub",
-    year: "2023",
-    description:
-      "Recognized for significant contributions to the open-source community.",
-    descriptionKo: "오픈소스 커뮤니티에 대한 중요한 기여로 인정받았습니다.",
+      "Completed Harvard’s advanced web development program focused on full-stack application development using Python, JavaScript, Django, databases, APIs, and modern web technologies.",
+    descriptionKo:
+      "하버드 대학교의 고급 웹 개발 프로그램을 완료하여 전체 스택 애플리케이션 개발 능력을 향상시켰습니다.",
   },
 ];
 

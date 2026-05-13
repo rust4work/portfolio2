@@ -7,6 +7,7 @@ import Projects from "@/sections/Projects";
 import Awards from "@/sections/Awards";
 import Contact from "@/sections/Contact";
 import ClientProviders from "@/components/ClientProviders";
+import CertificateSection from "@/sections/CertificatesSection";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
         <TechStack />
         <Projects />
         <Awards />
+        <CertificateSection />
         <Contact />
       </main>
     </>

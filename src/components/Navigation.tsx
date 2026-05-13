@@ -44,6 +44,7 @@ export default function Navigation() {
     { label: t("nav.stack"), href: "#stack" },
     { label: t("nav.work"), href: "#projects" },
     { label: t("nav.awards"), href: "#awards" },
+    { label: t("nav.certificates"), href: "#certificates" },
     { label: t("nav.contact"), href: "#contact" },
   ];
 
