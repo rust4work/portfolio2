@@ -15,9 +15,8 @@ import {
   SiFigma,
   SiVercel,
   SiPostman,
-  SiGooglegemini,
-  SiClaude,
-  SiOpenaigym,
+  SiGoogle,
+  SiOpenai,
 } from "react-icons/si";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -50,9 +49,9 @@ const techCategories = [
       { name: "Figma", icon: <SiFigma /> },
       { name: "Vercel", icon: <SiVercel /> },
       { name: "AWS", icon: <SiVercel /> },
-      { name: "Gemini", icon: <SiGooglegemini /> },
-      { name: "Claude", icon: <SiClaude /> },
-      { name: "Codex", icon: <SiOpenaigym /> },
+      { name: "Gemini", icon: <SiGoogle /> },
+      { name: "Claude", icon: <SiVercel /> },
+      { name: "Codex", icon: <SiOpenai /> },
     ],
   },
 ];
