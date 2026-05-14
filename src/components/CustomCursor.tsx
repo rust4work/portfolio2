@@ -89,7 +89,7 @@ export default function CustomCursor() {
       <div
         ref={cursorRef}
         className={`fixed top-0 left-0 pointer-events-none z-[9999] mix-blend-difference transition-[width,height] duration-300 ${
-          isHovering ? "w-20 h-20" : "w-8 h-8"
+          isHovering ? "w-15 h-15" : "w-8 h-8"
         } -translate-x-1/2 -translate-y-1/2 flex items-center justify-center`}
       >
         <div

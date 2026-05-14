@@ -5,6 +5,7 @@ import gsap from "gsap";
 import SectionHeader from "@/components/SectionHeader";
 import CertificateCard from "@/components/CertificateCard";
 import { useLanguage } from "@/context/LanguageContext";
+import habsida from "../../public/certificates/habsida.png";
 
 interface Certificate {
   id: string;
@@ -28,39 +29,41 @@ interface Certificate {
 
 const certificates: Certificate[] = [
   {
-    id: "aws-saa",
+    id: "habsida",
     title: {
-      en: "AWS Solutions Architect Associate",
-      ko: "AWS 솔루션스 아키텍트 어소시에이트",
+      en: "Habsida Frontend Developer Certification",
+      ko: "Habsida 프론트엔드 개발자 인증",
     },
     issuer: {
-      en: "Amazon Web Services",
-      ko: "아마존 웹 서비스",
+      en: "Habsida",
+      ko: "Habsida",
     },
-    date: "2024.03",
+    date: "2026.01",
     description: {
-      en: "Validates expertise in designing distributed systems on AWS infrastructure.",
-      ko: "AWS 인프라에서 분산 시스템 설계 전문성을 검증합니다.",
+      en: "Completed an intensive frontend development program focused on modern web technologies, responsive UI implementation, and real-world project development.",
+      ko: "Habsida에서 제공하는 프론트엔드 개발자 교육 프로그램을 완료했습니다.",
     },
-    image: "/certs/aws-saa.png",
+    image: "/certificates/habsida.png",
+    link: "/certificates/habsida.png",
     badge: "Active",
   },
   {
-    id: "ckad",
+    id: "ielts",
     title: {
-      en: "CKAD: Certified Kubernetes Application Developer",
-      ko: "CKAD: 쿠버네티스 애플리케이션 개발자 인증",
+      en: "IELTS: International English Language Testing System",
+      ko: "IELTS: 국제 영어 능력 시험",
     },
     issuer: {
-      en: "Cloud Native Computing Foundation",
-      ko: "클라우드 네이티브 컴퓨팅 재단",
+      en: "British Council",
+      ko: "브리티시 컨설팅",
     },
-    date: "2024.01",
+    date: "2022.11",
     description: {
-      en: "Demonstrates skills in designing, building, and deploying cloud-native applications.",
-      ko: "클라우드 네이티브 애플리케이션 설계, 구축 및 배포 능력을 입증합니다.",
+      en: "Achieved an overall band score of 6, demonstrating advanced English proficiency in listening, reading, writing, and speaking.",
+      ko: "브리티시 컨설팅에서 제공하는 국제 영어 능력 시험을 통과했습니다.",
     },
-    image: "/certs/ckad.png",
+    image: "/certificates/ielts.png",
+    link: "/certificates/ielts.png",
   },
 ];
 
@@ -92,7 +95,7 @@ export default function CertificatesSection({
 
     animationRef.current = gsap.to(track, {
       x: -totalWidth,
-      duration: 40,
+      duration: 15,
       ease: "none",
       repeat: -1,
       modifiers: {

@@ -18,26 +18,31 @@ export default function CertificateCard({
   onHover,
 }: CertificateCardProps) {
   return (
-    <div
+    <a
+      href={certificate.link || certificate.image}
+      target="_blank"
+      rel="noopener noreferrer"
       onMouseEnter={() => onHover(certificate.id)}
       onMouseLeave={() => onHover(null)}
       className="
-        group relative w-[340px] shrink-0
-        border border-border
-        bg-fg/5
-        rounded-3xl
-        overflow-hidden
-        transition-all duration-500
-        hover:border-accent
-      "
+    group relative w-[340px] shrink-0
+    border border-border
+    bg-fg/5
+    rounded-3xl
+    overflow-hidden
+    transition-all duration-500
+    hover:border-accent
+    block
+  "
     >
-      <div className="relative aspect-[16/10] overflow-hidden">
+      <div className="relative aspect-[3/4] overflow-hidden">
         <Image
           src={certificate.image}
           alt={language === "ko" ? certificate.title.ko : certificate.title.en}
           fill
           className="
             object-cover
+            scale-100
             transition-transform duration-700
             group-hover:scale-105
           "
@@ -105,6 +110,6 @@ export default function CertificateCard({
           )}
         </div>
       </div>
-    </div>
+    </a>
   );
 }

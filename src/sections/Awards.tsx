@@ -109,7 +109,7 @@ export default function Awards() {
                     {lang === "ko" ? award.titleKo : award.title}
                   </h3>
                 </div>
-
+                <div className="md:col-span-2 flex justify-end"></div>
                 <div className="md:col-span-3">
                   <div className="flex items-center gap-2">
                     <Award className="w-4 h-4 text-accent" />
@@ -123,12 +123,6 @@ export default function Awards() {
                   <span className="font-mono text-sm text-fg-muted">
                     {award.year}
                   </span>
-                </div>
-
-                <div className="md:col-span-2 flex justify-end">
-                  <div className="w-10 h-10 rounded-full border border-fg/20 flex items-center justify-center group-hover:bg-accent group-hover:border-accent transition-all duration-300">
-                    <ArrowUpRight className="w-4 h-4 group-hover:text-bg transition-colors" />
-                  </div>
                 </div>
               </div>
 
