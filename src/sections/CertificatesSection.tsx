@@ -65,6 +65,78 @@ const certificates: Certificate[] = [
     image: "/certificates/ielts.png",
     link: "/certificates/ielts.png",
   },
+  {
+    id: "topik",
+    title: {
+      en: "TOPIK: Test of Proficiency in Korean",
+      ko: "TOPIK: 한국어 능력 시험",
+    },
+    issuer: {
+      en: "National Institute for International Education",
+      ko: "국립국제교육원장",
+    },
+    date: "2025.03",
+    description: {
+      en: "Achieved an overall band score of 4, demonstrating advanced Korean proficiency in listening, reading, writing, and speaking.",
+      ko: "국립국제교육원장에서 제공하는 한국어 능력 시험을 통과했습니다.",
+    },
+    image: "/certificates/topik.jpg",
+    link: "/certificates/topik.jpg",
+  },
+  {
+    id: "4level",
+    title: {
+      en: "SNU Certificate of completion of 4th level Korean",
+      ko: "SNU 4단계 한국어 수료증",
+    },
+    issuer: {
+      en: "SNU Language Education Institute",
+      ko: "서울대학교 언어교육원장",
+    },
+    date: "2024.08",
+    description: {
+      en: "Completed the 4th level Korean language course at SNU Language Education Institute, demonstrating advanced proficiency in Korean language skills.",
+      ko: "서울대학교 언어교육원 한국어 4급 과정을 수료하여 한국어 고급 기량을 입증했습니다.",
+    },
+    image: "/certificates/4level.jpg",
+    link: "/certificates/4level.jpg",
+  },
+  {
+    id: "performance",
+    title: {
+      en: "Certificate of Outstanding Performance in SNU  Korean Course",
+      ko: "서울대학교 한국어 과정 우수 수료증",
+    },
+    issuer: {
+      en: "SNU Language Education Institute",
+      ko: "서울대학교 언어교육원장",
+    },
+    date: "2024.02",
+    description: {
+      en: "Certificate awarded for outstanding performance in the SNU Korean language course, demonstrating exceptional dedication and proficiency in Korean language skills and Korean culture.",
+      ko: "서울대학교 한국어 과정에서 탁월한 성적을 거두어 한국어 능력과 한국 문화에 대한 뛰어난 헌신과 숙련도를 인정받아 수여된 증서입니다.",
+    },
+    image: "/certificates/performance.jpg",
+    link: "/certificates/performance.jpg",
+  },
+  {
+    id: "attendance",
+    title: {
+      en: "Certificate of Perfect Attendance in SNU  Korean Course",
+      ko: "서울대학교 한국어 과정 출석 완료증",
+    },
+    issuer: {
+      en: "SNU Language Education Institute",
+      ko: "서울대학교 언어교육원장",
+    },
+    date: "2024.02",
+    description: {
+      en: "Certificate awarded for perfect attendance in the SNU Korean language course, demonstrating consistent commitment and engagement in Korean language learning.",
+      ko: "서울대학교 한국어 과정에서 완벽한 출석 기록을 달성하여 한국어 학습에 대한 지속적인 헌신과 참여를 인정받아 수여된 증서입니다.",
+    },
+    image: "/certificates/attendance.jpg",
+    link: "/certificates/attendance.jpg",
+  },
 ];
 
 export default function CertificatesSection({
@@ -81,21 +153,17 @@ export default function CertificatesSection({
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [isPaused, setIsPaused] = useState(false);
 
-  const duplicatedCertificates = [
-    ...certificates,
-    ...certificates,
-    ...certificates,
-  ];
+  const duplicatedCertificates = [...certificates, ...certificates];
 
   useEffect(() => {
     if (!trackRef.current || certificates.length === 0) return;
 
     const track = trackRef.current;
-    const totalWidth = track.scrollWidth / 3;
+    const totalWidth = track.scrollWidth / 2;
 
     animationRef.current = gsap.to(track, {
       x: -totalWidth,
-      duration: 15,
+      duration: 35,
       ease: "none",
       repeat: -1,
       modifiers: {
