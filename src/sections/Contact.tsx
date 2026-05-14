@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Mail, ArrowUpRight, Cat, Bird } from "lucide-react";
+import { Mail, ArrowUpRight, Cat, Camera } from "lucide-react";
 import MagneticButton from "@/components/MagneticButton";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -87,7 +87,7 @@ export default function Contact() {
           </h2>
 
           <MagneticButton
-            href="mailto:hello@johndoe.com"
+            href="mailto:rust.workspace4@gmail.com"
             className="group inline-flex items-center gap-4 px-10 py-5 bg-fg text-bg rounded-full font-mono text-lg uppercase tracking-wider hover:bg-accent transition-colors duration-300"
             strength={0.2}
           >
@@ -100,7 +100,7 @@ export default function Contact() {
         <div className="footer-content border-t border-border pt-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
             <div>
-              <p className="font-display text-2xl font-bold mb-4">John Doe</p>
+              <p className="font-display text-2xl font-bold mb-4">Rustam</p>
               <p className="text-fg-muted leading-relaxed">
                 {t("contact.brand")}
               </p>
@@ -131,22 +131,22 @@ export default function Contact() {
                 <ul className="space-y-3">
                   <li>
                     <a
-                      href="https://linkedin.com"
+                      href="https://github.com/rust4work"
                       target="_blank"
                       className="flex items-center gap-2 text-fg-muted hover:text-fg transition-colors"
                     >
                       <Cat className="w-4 h-4" />
-                      LinkedIn
+                      GitHub
                     </a>
                   </li>
                   <li>
                     <a
-                      href="https://twitter.com"
+                      href="https://www.instagram.com/rxstvm/"
                       target="_blank"
                       className="flex items-center gap-2 text-fg-muted hover:text-fg transition-colors"
                     >
-                      <Bird className="w-4 h-4" />
-                      Twitter
+                      <Camera className="w-4 h-4" />
+                      Instagram
                     </a>
                   </li>
                 </ul>
@@ -170,7 +170,7 @@ export default function Contact() {
 
           <div className="mt-16 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="font-mono text-xs text-fg-muted">
-              © 2024 John Doe. {t("contact.copyright")}
+              © 2026 Rustam. {t("contact.copyright")}
             </p>
             <p className="font-mono text-xs text-fg-muted">
               {t("contact.builtwith")}

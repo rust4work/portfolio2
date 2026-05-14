@@ -70,7 +70,7 @@ const translations = {
     "contact.social.title": "Social",
     "contact.backtotop": "Back to Top",
     "contact.copyright": "All rights reserved.",
-    "contact.builtwith": "Built with Next.js, GSAP & lots of",
+    "contact.builtwith": "Built with Next.js, GSAP & lots of ☕",
   },
   ko: {
     "nav.about": "소개",
