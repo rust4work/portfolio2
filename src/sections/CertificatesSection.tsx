@@ -1,11 +1,14 @@
 "use client";
 
-import { useRef, useEffect, useState, useCallback } from "react";
+import { useRef, useEffect } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 import SectionHeader from "@/components/SectionHeader";
 import CertificateCard from "@/components/CertificateCard";
 import { useLanguage } from "@/context/LanguageContext";
-import habsida from "../../public/certificates/habsida.png";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface Certificate {
   id: string;
@@ -104,7 +107,7 @@ const certificates: Certificate[] = [
   {
     id: "performance",
     title: {
-      en: "Certificate of Outstanding Performance in SNU  Korean Course",
+      en: "Certificate of Outstanding Performance in SNU Korean Course",
       ko: "서울대학교 한국어 과정 우수 수료증",
     },
     issuer: {
@@ -113,8 +116,8 @@ const certificates: Certificate[] = [
     },
     date: "2024.02",
     description: {
-      en: "Certificate awarded for outstanding performance in the SNU Korean language course, demonstrating exceptional dedication and proficiency in Korean language skills and Korean culture.",
-      ko: "서울대학교 한국어 과정에서 탁월한 성적을 거두어 한국어 능력과 한국 문화에 대한 뛰어난 헌신과 숙련도를 인정받아 수여된 증서입니다.",
+      en: "Certificate awarded for outstanding performance in the SNU Korean language course.",
+      ko: "서울대학교 한국어 과정에서 탁월한 성적을 거두어 수여된 증서입니다.",
     },
     image: "/certificates/performance.jpg",
     link: "/certificates/performance.jpg",
@@ -122,7 +125,7 @@ const certificates: Certificate[] = [
   {
     id: "attendance",
     title: {
-      en: "Certificate of Perfect Attendance in SNU  Korean Course",
+      en: "Certificate of Perfect Attendance in SNU Korean Course",
       ko: "서울대학교 한국어 과정 출석 완료증",
     },
     issuer: {
@@ -131,8 +134,8 @@ const certificates: Certificate[] = [
     },
     date: "2024.02",
     description: {
-      en: "Certificate awarded for perfect attendance in the SNU Korean language course, demonstrating consistent commitment and engagement in Korean language learning.",
-      ko: "서울대학교 한국어 과정에서 완벽한 출석 기록을 달성하여 한국어 학습에 대한 지속적인 헌신과 참여를 인정받아 수여된 증서입니다.",
+      en: "Certificate awarded for perfect attendance in the SNU Korean language course.",
+      ko: "서울대학교 한국어 과정에서 완벽한 출석 기록을 달성하여 수여된 증서입니다.",
     },
     image: "/certificates/attendance.jpg",
     link: "/certificates/attendance.jpg",
@@ -148,49 +151,43 @@ export default function CertificatesSection({
 
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
-  const animationRef = useRef<gsap.core.Tween | null>(null);
-
-  const [hoveredId, setHoveredId] = useState<string | null>(null);
-  const [isPaused, setIsPaused] = useState(false);
-
-  const duplicatedCertificates = [...certificates, ...certificates];
 
   useEffect(() => {
-    if (!trackRef.current || certificates.length === 0) return;
+    if (!sectionRef.current || !trackRef.current) return;
 
     const track = trackRef.current;
-    const totalWidth = track.scrollWidth / 2;
 
-    animationRef.current = gsap.to(track, {
-      x: -totalWidth,
-      duration: 35,
-      ease: "none",
-      repeat: -1,
-      modifiers: {
-        x: gsap.utils.unitize((x) => parseFloat(x) % totalWidth),
-      },
-    });
+    const setupAnimation = () => {
+      const scrollDistance = track.scrollWidth - window.innerWidth;
+
+      if (scrollDistance <= 0) return;
+
+      const tween = gsap.to(track, {
+        x: -scrollDistance,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: `+=${scrollDistance}`,
+          scrub: 1,
+          pin: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      return tween;
+    };
+
+    const ctx = gsap.context(() => {
+      setupAnimation();
+    }, sectionRef);
+
+    ScrollTrigger.refresh();
 
     return () => {
-      animationRef.current?.kill();
+      ctx.revert();
     };
-  }, []);
-
-  useEffect(() => {
-    if (!animationRef.current) return;
-
-    if (hoveredId) {
-      animationRef.current.pause();
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setIsPaused(true);
-    } else {
-      animationRef.current.resume();
-      setIsPaused(false);
-    }
-  }, [hoveredId]);
-
-  const handleHover = useCallback((id: string | null) => {
-    setHoveredId(id);
   }, []);
 
   const title = lang === "en" ? "Certificates" : "자격증";
@@ -204,35 +201,10 @@ export default function CertificatesSection({
     <section
       id="certificates"
       ref={sectionRef}
-      className={`relative py-32 md:py-40 overflow-hidden ${className}`}
+      className={`relative overflow-hidden pt-10 pb-32 md:py-6 ${className}`}
     >
       <div className="max-w-7xl mx-auto px-6 mb-16">
         <SectionHeader number="05" title={title} subtitle={subtitle} />
-
-        <div
-          className={`
-            mt-6 inline-flex items-center gap-2 px-4 py-2 rounded-full
-            border border-border bg-fg/5
-            transition-all duration-300
-            ${isPaused ? "text-accent" : "text-fg-muted"}
-          `}
-        >
-          <div
-            className={`w-2 h-2 rounded-full ${
-              isPaused ? "bg-accent" : "bg-fg-muted"
-            }`}
-          />
-
-          <span className="text-xs font-mono uppercase tracking-wider">
-            {isPaused
-              ? lang === "en"
-                ? "Paused"
-                : "일시정지"
-              : lang === "en"
-                ? "Auto-scrolling"
-                : "자동 스크롤"}
-          </span>
-        </div>
       </div>
 
       <div className="relative">
@@ -243,16 +215,20 @@ export default function CertificatesSection({
         <div className="overflow-hidden py-4">
           <div
             ref={trackRef}
-            className="flex gap-6 pl-6"
-            style={{ willChange: "transform" }}
+            className="flex w-max gap-6 pl-6"
+            style={{
+              willChange: "transform",
+            }}
           >
-            {duplicatedCertificates.map((cert, index) => (
+            {certificates.map((cert) => (
               <CertificateCard
-                key={`${cert.id}-${index}`}
+                key={cert.id}
                 certificate={cert}
                 language={lang}
-                isHovered={hoveredId === cert.id}
-                onHover={handleHover}
+                isHovered={false}
+                onHover={function (id: string | null): void {
+                  throw new Error("Function not implemented.");
+                }}
               />
             ))}
           </div>

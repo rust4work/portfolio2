@@ -18,9 +18,12 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio — Creative Developer",
+  title: "RB — Creative Developer",
   description:
     "Portfolio of a creative developer crafting premium digital experiences",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
