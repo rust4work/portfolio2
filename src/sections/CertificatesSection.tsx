@@ -46,8 +46,8 @@ const certificates: Certificate[] = [
       en: "Completed an intensive frontend development program focused on modern web technologies, responsive UI implementation, and real-world project development.",
       ko: "Habsida에서 제공하는 프론트엔드 개발자 교육 프로그램을 완료했습니다.",
     },
-    image: "/certificates/habsida.png",
-    link: "/certificates/habsida.png",
+    image: "/certificates/habsida.jpg",
+    link: "/certificates/habsida.jpg",
     badge: "Active",
   },
   {
@@ -65,8 +65,8 @@ const certificates: Certificate[] = [
       en: "Achieved an overall band score of 6, demonstrating advanced English proficiency in listening, reading, writing, and speaking.",
       ko: "브리티시 컨설팅에서 제공하는 국제 영어 능력 시험을 통과했습니다.",
     },
-    image: "/certificates/ielts.png",
-    link: "/certificates/ielts.png",
+    image: "/certificates/ielts.jpg",
+    link: "/certificates/ielts.jpg",
   },
   {
     id: "topik",
